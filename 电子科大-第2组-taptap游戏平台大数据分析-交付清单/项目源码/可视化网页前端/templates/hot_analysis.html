@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <title>各tag占比</title>
+  <style>
+    header {
+            background-color: #cfd9db;
+            color: #091e2f;
+            padding: 10px;
+            text-align: center;
+            font-size: 26px;
+        }
+    body{
+      background-color: rgb(9,30,47);
+      margin: 20px;
+    }
+    .chart-container{
+      height: 400px;
+      margin-bottom: 20px;
+    }
+
+    .return-button {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 8px 12px;
+      background-color: #091e2f;
+      color: #cfd9db;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body style="height: 100%; margin: 0">
+  <header>
+    <h1>各tag占比</h1>
+  </header>
+  <div class="chart-container">
+    <div id="container1" style="height: 100%"></div>
+  </div>
+  <div class="chart-container">
+    <div id="container2" style="height: 100%"></div>
+  </div>
+  <div class="chart-container">
+    <div id="container3" style="height: 100%"></div>
+  </div>
+  <div class="chart-container">
+    <div id="container4" style="height: 100%"></div>
+  </div>
+  <div class="chart-container">
+    <div id="container5" style="height: 100%"></div>
+  </div>
+
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <script type="text/javascript">
+
+    var hot_android_tag = JSON.parse('{{ hot_android_tag_json|safe }}')
+    var hot_ios_tag = JSON.parse('{{ hot_ios_tag_json|safe }}')
+    var hotplay_android_tag = JSON.parse('{{ hotplay_android_tag_json|safe }}')
+    var book_android_tag = JSON.parse('{{ book_android_tag_json|safe }}')
+    var book_ios_tag = JSON.parse('{{ book_ios_tag_json|safe }}')
+
+    var dom1 = document.getElementById('container1');
+    var myChart1 = echarts.init(dom1, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+
+    var dom2 = document.getElementById('container2');
+    var myChart2 = echarts.init(dom2, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+
+    var dom3 = document.getElementById('container3');
+    var myChart3 = echarts.init(dom3, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+
+    var dom4 = document.getElementById('container4');
+    var myChart4 = echarts.init(dom4, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+
+    var dom5 = document.getElementById('container5');
+    var myChart5 = echarts.init(dom5, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+
+    var app = {};
+
+    var option1 = {
+        title: {
+            text: '热门榜Android',
+            left: 'center',
+            top: '1.5%',
+            textStyle: {
+              color: '#CFD9DB',
+              fontSize: 22
+            }
+        },
+
+        xAxis: {
+            type: 'category',
+            data: hot_android_tag.map(item => item['tag']),
+            axisLabel: {
+                color: '#CFD9DB',
+                fontSize: 16
+            }
+        },
+
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}%',
+                color: '#CFD9DB'
+            }
+        },
+
+        series: [
+            {
+                data: hot_android_tag.map(item => parseFloat(item['account'])),
+                type: 'bar',
+                label: {
+                  show: true,
+                  position: 'top',
+                  formatter: '{c}%',
+                  color: '#CFD9DB'
+                },
+                itemStyle: {
+                  color: '#347F9C'
+                },
+            }
+        ]
+    };
+
+    var option2 = {
+      title: {
+            text: '热门榜ios',
+            left: 'center',
+            top: '1.5%',
+            textStyle: {
+              color: '#CFD9DB',
+              fontSize: 22
+            }
+        },
+
+        xAxis: {
+            type: 'category',
+            data: hot_ios_tag.map(item => item['tag']),
+            axisLabel: {
+                color: '#CFD9DB',
+              fontSize: 16
+            }
+        },
+
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}%',
+                color: '#CFD9DB'
+            }
+        },
+
+        series: [
+            {
+                data: hot_ios_tag.map(item => parseFloat(item['account'])),
+                type: 'bar',
+                label: {
+                  show: true,
+                  position: 'top',
+                  formatter: '{c}%',
+                  color: '#CFD9DB'
+                },
+                itemStyle: {
+                  color: '#347F9C'
+                },
+            }
+        ]
+    };
+
+    var option3 = {
+        title: {
+            text: '热玩榜Android',
+            left: 'center',
+            top: '1.5%',
+            textStyle: {
+              color: '#CFD9DB',
+              fontSize: 22
+            }
+        },
+
+        xAxis: {
+            type: 'category',
+            data: hotplay_android_tag.map(item => item['tag']),
+            axisLabel: {
+                color: '#CFD9DB',
+              fontSize: 16
+            }
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}%',
+                color: '#CFD9DB'
+            }
+        },
+        series: [
+            {
+                data: hotplay_android_tag.map(item => parseFloat(item['account'])),
+                type: 'bar',
+                label: {
+                  show: true,
+                  position: 'top',
+                  formatter: '{c}%',
+                  color: '#CFD9DB'
+                },
+                itemStyle: {
+                  color: '#347F9C'
+                },
+            }
+        ]
+    };
+
+    var option4 = {
+        title: {
+            text: '预约榜Android',
+            left: 'center',
+            top: '1.5%',
+            textStyle: {
+              color: '#CFD9DB',
+              fontSize: 22
+            }
+        },
+
+        xAxis: {
+            type: 'category',
+            data: book_android_tag.map(item => item['tag']),
+            axisLabel: {
+                color: '#CFD9DB',
+              fontSize: 16
+            }
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}%',
+                color: '#CFD9DB'
+            }
+        },
+        series: [
+            {
+                data: book_android_tag.map(item => parseFloat(item['account'])),
+                type: 'bar',
+                label: {
+                  show: true,
+                  position: 'top',
+                  formatter: '{c}%',
+                  color: '#CFD9DB'
+                },
+                itemStyle: {
+                  color: '#347F9C'
+                },
+            }
+        ]
+    };
+
+    var option5 = {
+      title: {
+            text: '预约榜ios',
+            left: 'center',
+            top: '1.5%',
+            textStyle: {
+              color: '#CFD9DB',
+              fontSize: 22
+            }
+        },
+
+        xAxis: {
+            type: 'category',
+            data: book_ios_tag.map(item => item['tag']),
+            axisLabel: {
+                color: '#CFD9DB',
+                fontSize: 16
+            }
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}%',
+              color: '#CFD9DB'
+            }
+        },
+        series: [
+            {
+                data: book_ios_tag.map(item => parseFloat(item['account'])),
+                type: 'bar',
+                label: {
+                  show: true,
+                  position: 'top',
+                  formatter: '{c}%',
+                  color: '#CFD9DB'
+                },
+                itemStyle: {
+                  color: '#347F9C'
+                },
+            }
+        ]
+    };
+
+
+    myChart1.setOption(option1);
+    myChart2.setOption(option2);
+    myChart3.setOption(option3);
+    myChart4.setOption(option4);
+    myChart5.setOption(option5);
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+
+ <button class="return-button" onclick="goBack()">返回</button>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>

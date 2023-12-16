@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+    <title>按tag类型排名取前5名游戏</title>
+    <style>
+        header {
+            background-color: #091e2f;
+            color: #cfd9db;
+            padding: 10px;
+            text-align: center;
+            font-size: 26px;
+        }
+
+        body{
+            background-color: rgb(207, 217, 219);
+            margin: 20px;
+        }
+
+        th, td{
+            border: 1px solid rgba(0, 0, 0, 0.63);
+            padding: 19px;
+            text-align: left;
+            width: 33.33%;
+            font-size: 22px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            color: #347f9c;
+            margin-bottom: 40px;
+        }
+
+        th {
+            background-color: #cfd9db;
+        }
+
+        h2{
+            font-size: 16px;
+            color: #091e2f;
+            margin-top: 30px;
+        }
+
+        .return-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 8px 12px;
+      background-color: #091e2f;
+      color: #cfd9db;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>常见游戏类型及游戏展示</h1>
+    </header>
+
+    <h2>热门榜Android</h2>
+    <div id="table1">
+    <table>
+        <thead>
+            <tr>
+                {% for col in hot_android_game.columns %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for index, row in hot_android_game.iterrows() %}
+                <tr>
+                    {% for col in hot_android_game.columns %}
+                        <td>{{ row[col] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <hr>
+
+    <h2>热门榜ios</h2>
+    <div id="table2">
+        <table>
+            <thead>
+                <tr>
+                    {% for col in hot_ios_game.columns %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in hot_ios_game.iterrows() %}
+                    <tr>
+                        {% for col in hot_ios_game.columns %}
+                            <td>{{ row[col] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+     <hr>
+
+    <h2>热玩榜Android</h2>
+    <div id="table3">
+       <table>
+        <thead>
+            <tr>
+                {% for col in hotplay_android_game.columns %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for index, row in hotplay_android_game.iterrows() %}
+                <tr>
+                    {% for col in hotplay_android_game.columns %}
+                        <td>{{ row[col] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <hr>
+
+    <h2>预约榜Android</h2>
+    <div id="table4">
+      <table>
+        <thead>
+            <tr>
+                {% for col in book_android_game.columns %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for index, row in book_android_game.iterrows() %}
+                <tr>
+                    {% for col in book_android_game.columns %}
+                        <td>{{ row[col] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <hr>
+
+    <h2>预约榜ios</h2>
+    <div id="table5">
+      <table>
+            <thead>
+                <tr>
+                    {% for col in book_ios_game.columns %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in book_ios_game.iterrows() %}
+                    <tr>
+                        {% for col in book_ios_game.columns %}
+                            <td>{{ row[col] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+<button class="return-button" onclick="goBack()">返回</button>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <title>Tap Tap游戏平台大数据分析</title>
+  <style>
+    body {
+      font-family: cursive, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(207, 217, 219);
+    }
+
+    header {
+      background-color: #091e2f;
+      color: #cfd9db;
+      padding: 10px;
+      text-align: center;
+      font-size: 26px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 22px;
+      color: #cfd9db;
+    }
+
+    a {
+        text-decoration: none;
+        color: #347f9c;
+        font-size: 26px;
+        font-weight: bold;
+    }
+    section p {
+        font-size: 20px;
+        color: #347f9c;
+    }
+
+    .sidebar {
+      flex: 1;
+      background-color: rgb(207, 217, 219);
+      padding: 20px;
+      color: #091e2f;
+      margin-top: 100px;
+    }
+
+    h2 {
+        color: #091e2f;
+        text-align: center;
+        font-size: 40px;
+        font-weight: normal;
+    }
+
+    h3 {
+        color: rgba(52, 115, 156, 0.9);
+        text-align: center;
+        font-size: 25px;
+        font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tap Tap游戏平台大数据分析</h1>
+  </header>
+ <main style="display: flex;">
+     <div class="content">
+      <section>
+      <a href="show.html">前10名展示</a>
+          <p>展示当日tap tap对应排行榜上的前十名展示。</p>
+      </section>
+    <section>
+      <a href="hot_analysis.html">各tag占比</a>
+        <p>收集当日榜中所有游戏tag出现次数与榜上所有游戏数量相除，取前十名展示。</p>
+    </section>
+    <section>
+      <a href="tagnum.html">榜中各游戏tag数量占比</a>
+        <p>统计拥有1、2、3个tag的游戏数量的占比展示。</p>
+    </section>
+      <section>
+      <a href="every_tag.html">榜中各类型游戏前5名</a>
+          <p>榜中所有游戏按类型分类，取类型所含游戏数前10名里面的前5名游戏展示。</p>
+    </section>
+      <section>
+      <a href="high_score_tag.html">高分游戏（前30名）各tag占比数</a>
+          <p>收集当日榜中排名前三十游戏tag出现次数除以三十，取前十名展示。</p>
+    </section>
+      <section>
+      <a href="Comprehensive_ranking.html">综合榜单排名和评分前10</a>
+          <p>综合排名信息与评分信息，按照算法得出综合排名后，取前十名展示。</p>
+    </section>
+     </div>
+
+     <div class="sidebar">
+         <h2></h2>
+         <h2>Tap Tap数据源</h2>
+         <h3>热门榜（Android、IOS）</h3>
+         <h3>热玩榜（Android）</h3>
+         <h3>预约榜（Android、IOS）</h3>
+     </div>
+  </main>
+</body>
+</html>
